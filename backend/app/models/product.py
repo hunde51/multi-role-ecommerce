@@ -1,9 +1,10 @@
 # app/models/product.py
-from sqlalchemy import Column, Integer, String, Float, ForeignKey, Boolean, Text, DateTime, Integer as CountColumn
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, Boolean, Text, DateTime, Enum
+from sqlalchemy.orm import relationship, backref
 from sqlalchemy.sql import func
 from app.core.database import Base
 import enum
+
 
 class ProductStatus(str, enum.Enum):
     DRAFT = "draft"           # Seller still editing
@@ -27,6 +28,7 @@ class Product(Base):
     
     # === Digital Product Specific ===
     file_url = Column(String, nullable=True)  # Path to main product file
+    file_name = Column(String, nullable=True)  # Original filename
     file_size = Column(Integer, nullable=True)  # In bytes
     file_type = Column(String, nullable=True)  # PDF, MP4, ZIP, etc.
     preview_url = Column(String, nullable=True)  # Preview image/video
