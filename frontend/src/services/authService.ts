@@ -12,6 +12,8 @@ export interface User {
   full_name?: string
   role: string
   is_active: boolean
+  is_seller_approved?: boolean
+  is_verified?: boolean
 }
 
 export interface AuthResponse {
